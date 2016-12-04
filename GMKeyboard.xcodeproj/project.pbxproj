@@ -123,6 +123,7 @@
 				TargetAttributes = {
 					FFE1C05F1D92BE6C0025193E = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 9ZJCC29GAB;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -337,8 +338,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1D036A5B505BCB6387140E0 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9ZJCC29GAB;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdollardollar.gmkeyboard.example;
@@ -351,8 +353,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB7B180AAF7E9524514A4A1F /* Pods-Example.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9ZJCC29GAB;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdollardollar.gmkeyboard.example;
