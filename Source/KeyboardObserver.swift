@@ -16,6 +16,10 @@ public protocol KeyboardObserver: class {
     
     var keyboardObservers: [Any]? { get set }
     
+    func keyboardWillShow(notification: Notification)
+    
+    func keyboardWillHide(notification: Notification)
+    
     func keyboardWillChange(frameInView frame: CGRect,
                             animationDuration: TimeInterval,
                             animationOptions: UIViewAnimationOptions,
@@ -24,40 +28,49 @@ public protocol KeyboardObserver: class {
 
 extension KeyboardObserver {
     
-    private func _gm_handleNotificationUserInfo(_ userInfo: [AnyHashable: Any]) {
+    public func handleKeyboardNotificationUserInfo(_ userInfo: [AnyHashable: Any]) {
         keyboardWillChange(frameInView: (userInfo[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue,
                            animationDuration: (userInfo[UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue,
                            animationOptions: _gm_optionFromCurve((userInfo[UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value),
                            userInfo: userInfo)
     }
     
+    public func keyboardWillShow(notification: Notification) {
+        isKeyboardDisplayed = true
+        handleKeyboardNotificationUserInfo(notification.userInfo!)
+    }
+    
+    public func keyboardWillHide(notification: Notification) {
+        isKeyboardDisplayed = false
+        handleKeyboardNotificationUserInfo(notification.userInfo!)
+    }
+    
+    
     public func addKeyboardObservers() {
         let center = NotificationCenter.default
+        //Doing blocks because compiler complains that methods are not visible to obj-C
         keyboardObservers = [
             center.addObserver(forName: NSNotification.Name.UIKeyboardWillShow, object: nil, queue: nil) { notification in
-                self.isKeyboardDisplayed = true
-                self._gm_handleNotificationUserInfo(notification.userInfo!)
+               self.keyboardWillShow(notification: notification)
             },
             center.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil) { notification in
-                self.isKeyboardDisplayed = false
-                self._gm_handleNotificationUserInfo(notification.userInfo!)
+                self.keyboardWillHide(notification: notification)
             }
         ]
     }
     
     public var keyboardObservers: [Any]? {
         get {
-            return objc_getAssociatedObject(self, &GM_OBSERVERS_KEY) as? [AnyObject] ?? nil
+            return objc_getAssociatedObject(self, &GM_OBSERVERS_KEY) as? [Any] ?? nil
         }
         set {
-            objc_setAssociatedObject(self, &GM_OBSERVERS_KEY, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &GM_OBSERVERS_KEY, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
     
     public func removeKeyboardObservers() {
         let center = NotificationCenter.default
         keyboardObservers?.forEach { center.removeObserver($0) }
-        
         
         center.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }

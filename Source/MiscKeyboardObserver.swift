@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ConstrainedKeyboardObserver: AnimatedKeyboardObserver {
+public protocol BottomConstraintKeyboardObserver: AnimatedKeyboardObserver {
     
     weak var bottomConstraint: NSLayoutConstraint! { get }
     
@@ -16,14 +16,14 @@ public protocol ConstrainedKeyboardObserver: AnimatedKeyboardObserver {
     
 }
 
-extension ConstrainedKeyboardObserver where Self: UIViewController {
+extension BottomConstraintKeyboardObserver where Self: UIViewController {
     
     public var bottomOffset: CGFloat {
         return 0
     }
     
     public func animateKeyboardChange(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) {
-        bottomConstraint.constant = bottomOffset + view.bounds.height - frame.minY
+        bottomConstraint.constant = bottomOffset + max(0, view.bounds.height - frame.minY)
         view.setNeedsLayout()
         view.layoutIfNeeded()
     }
