@@ -26,12 +26,12 @@ public protocol KeyboardObserver: class {
                             userInfo: [AnyHashable: Any])
 }
 
-extension KeyboardObserver {
+extension KeyboardObserver where Self: UIViewController{
     
     public func handleKeyboardNotificationUserInfo(_ userInfo: [AnyHashable: Any]) {
-        keyboardWillChange(frameInView: (userInfo[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue,
-                           animationDuration: (userInfo[UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue,
-                           animationOptions: _gm_optionFromCurve((userInfo[UIKeyboardAnimationCurveUserInfoKey]! as AnyObject).int32Value),
+        keyboardWillChange(frameInView: self.view.convert(userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect, from: nil),
+                           animationDuration: userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval,
+                           animationOptions: _gm_optionFromCurve(userInfo[UIKeyboardAnimationCurveUserInfoKey] as! Int),
                            userInfo: userInfo)
     }
     
@@ -89,7 +89,7 @@ extension KeyboardObserver {
 fileprivate var GM_ISKEYBOARDDISPLAYED_KEY = "GMKeyboard.isKeyboardDisplayed"
 fileprivate var GM_OBSERVERS_KEY = "GMKeyboard.observers"
 
-fileprivate func _gm_optionFromCurve(_ rawValue: Int32) -> UIViewAnimationOptions {
+fileprivate func _gm_optionFromCurve(_ rawValue: Int) -> UIViewAnimationOptions {
     let curve = UIViewAnimationCurve(rawValue: Int(rawValue))!
     switch curve {
     case .easeIn:
