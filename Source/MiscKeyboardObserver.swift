@@ -23,7 +23,7 @@ extension BottomConstraintKeyboardObserver where Self: UIViewController {
     }
     
     public func animateKeyboardChange(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) {
-        bottomConstraint.constant = bottomOffset + max(0, view.bounds.height - frame.minY)
+        bottomConstraint?.constant = bottomOffset + max(0, view.bounds.height - frame.minY)
         view.setNeedsLayout()
         view.layoutIfNeeded()
     }
