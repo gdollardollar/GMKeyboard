@@ -54,7 +54,7 @@ extension BottomViewKeyboardObserver where Self: UIViewController {
         
         let oldT = bottomView.transform
         bottomView.transform = .identity
-        let ty = -max(0, view.convert(bottomView.frame, from: bottomView.superview!).maxY - frame.minY)
+        let ty = -max(0, view.convert(bottomView.frame, from: bottomView.superview!).maxY + minimumMargin - frame.minY)
         bottomView.transform = oldT
         
         translatableViews.forEach { $0.transform.ty = ty }
