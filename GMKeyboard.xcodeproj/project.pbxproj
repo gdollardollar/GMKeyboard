@@ -13,7 +13,7 @@
 		FFE1C08F1D92BECC0025193E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE1C0871D92BECC0025193E /* Assets.xcassets */; };
 		FFE1C0901D92BECC0025193E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE1C0881D92BECC0025193E /* LaunchScreen.storyboard */; };
 		FFE1C0911D92BECC0025193E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFE1C08A1D92BECC0025193E /* Main.storyboard */; };
-		FFE1C0931D92BECC0025193E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE1C08D1D92BECC0025193E /* ViewController.swift */; };
+		FFE1C0931D92BECC0025193E /* ViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE1C08D1D92BECC0025193E /* ViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		FFE1C0891D92BECC0025193E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFE1C08B1D92BECC0025193E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FFE1C08C1D92BECC0025193E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFE1C08D1D92BECC0025193E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FFE1C08D1D92BECC0025193E /* ViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 				FFE1C0881D92BECC0025193E /* LaunchScreen.storyboard */,
 				FFE1C08A1D92BECC0025193E /* Main.storyboard */,
 				FFE1C08C1D92BECC0025193E /* Info.plist */,
-				FFE1C08D1D92BECC0025193E /* ViewController.swift */,
+				FFE1C08D1D92BECC0025193E /* ViewViewController.swift */,
 				FFB5857A1FE2D229005F54C5 /* ConstraintViewController.swift */,
 			);
 			path = Example;
@@ -223,7 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFB5857B1FE2D229005F54C5 /* ConstraintViewController.swift in Sources */,
-				FFE1C0931D92BECC0025193E /* ViewController.swift in Sources */,
+				FFE1C0931D92BECC0025193E /* ViewViewController.swift in Sources */,
 				FFE1C08E1D92BECC0025193E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

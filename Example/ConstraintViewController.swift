@@ -1,9 +1,8 @@
 //
 //  ConstraintViewController.swift
-//  Example
+//  GMKeyboard
 //
-//  Created by John Paul on 12/14/17.
-//  Copyright © 2017 Guillaume. All rights reserved.
+//  Created by gdollardollar on 12/14/17.
 //
 
 import UIKit
@@ -12,12 +11,6 @@ import GMKeyboard
 class ConstraintViewController: UIViewController, BottomConstraintKeyboardObserver {
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

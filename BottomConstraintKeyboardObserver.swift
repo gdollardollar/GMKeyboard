@@ -1,17 +1,33 @@
 //
-//  ConstrainedKeyboardObserver.swift
-//  Pods
+//  BottomConstraintKeyboardObserver.swift
+//  GMKeyboard
 //
-//  Created by Guillaume on 12/4/16.
-//
+//  Created by gdollardollar on 12/14/17.
 //
 
 import Foundation
 
+
+/// Layer on top of `AnimatedKeyboardObserver` that handles updating
+/// a constraint at the bottom of the view controller.
+/// The constraint is updated based on the `bottomOffset`, the
+/// keyboard height and whether or not the constraint is linked to the safe
+/// area (iOS 11 only)
+///
+/// The safe area handling only works for iOS 11 and if the
+/// "Use safe area" checkbox is checked in the storyboard.
 public protocol BottomConstraintKeyboardObserver: AnimatedKeyboardObserver {
     
+    /// A constraint at the bottom of the view that will be updated when the
+    /// keyboard is displayed.
     weak var bottomConstraint: NSLayoutConstraint! { get }
     
+    
+    /// An offset added to the calculated value of the constraint
+    /// You could very well provide a different value depending on if
+    /// the keyboard is displayed.
+    ///
+    /// The default implementation simply returns 0
     var bottomOffset: CGFloat { get }
     
 }
@@ -38,39 +54,6 @@ extension BottomConstraintKeyboardObserver where Self: UIViewController {
         bottomConstraint?.constant = guideOffset + bottomOffset + kHeight
         view.setNeedsLayout()
         view.layoutIfNeeded()
-    }
-    
-}
-
-public protocol BottomViewKeyboardObserver: AnimatedKeyboardObserver {
-    
-    var translatableViews: [UIView]! { get }
-    
-    weak var bottomView: UIView! { get }
-    
-    var minimumMargin: CGFloat { get }
-    
-}
-
-extension BottomViewKeyboardObserver where Self: UIViewController {
-    
-    public var translatableViews: [UIView]! {
-        return [bottomView]
-    }
-    
-    public var minimumMargin: CGFloat {
-        return 10
-    }
-    
-    public func animateKeyboardChange(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) {
-        
-        let oldT = bottomView.transform
-        bottomView.transform = .identity
-        let ty = -max(0, view.convert(bottomView.frame, from: bottomView.superview!).maxY + minimumMargin - frame.minY)
-        bottomView.transform = oldT
-        
-        translatableViews.forEach { $0.transform.ty = ty }
-        
     }
     
 }
