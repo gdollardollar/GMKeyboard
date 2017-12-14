@@ -1,44 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="view" id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XVf-Zh-JGL">
-                                <rect key="frame" x="16" y="479" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSi-Lf-kGC">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.24313725489999999" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="aIF-fh-Xve"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickWithSender:" destination="BYZ-38-t0r" eventType="touchDown" id="Osf-e1-8bb"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XVf-Zh-JGL">
+                                <rect key="frame" x="0.0" y="538" width="375" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6I2-J4-s4m" firstAttribute="trailing" secondItem="XVf-Zh-JGL" secondAttribute="trailing" id="2do-Lu-3q3"/>
+                            <constraint firstItem="zSi-Lf-kGC" firstAttribute="top" secondItem="XVf-Zh-JGL" secondAttribute="bottom" constant="59" id="9Gm-xn-JwX"/>
+                            <constraint firstItem="6I2-J4-s4m" firstAttribute="bottom" secondItem="zSi-Lf-kGC" secondAttribute="bottom" id="OaO-LM-8Tn"/>
+                            <constraint firstItem="XVf-Zh-JGL" firstAttribute="leading" secondItem="6I2-J4-s4m" secondAttribute="leading" id="kP0-47-F6p"/>
+                            <constraint firstItem="zSi-Lf-kGC" firstAttribute="leading" secondItem="6I2-J4-s4m" secondAttribute="leading" id="oku-bi-4q2"/>
+                            <constraint firstItem="6I2-J4-s4m" firstAttribute="trailing" secondItem="zSi-Lf-kGC" secondAttribute="trailing" id="xOd-ef-fI7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6I2-J4-s4m"/>
                     </view>
                     <connections>
-                        <outlet property="bottomView" destination="XVf-Zh-JGL" id="4iD-Ae-h85"/>
-                        <outletCollection property="translatableViews" destination="XVf-Zh-JGL" id="YV9-Ze-XnG"/>
+                        <outlet property="bottomView" destination="zSi-Lf-kGC" id="4Ws-uI-VMx"/>
+                        <outletCollection property="translatableViews" destination="XVf-Zh-JGL" collectionClass="NSMutableArray" id="YV9-Ze-XnG"/>
+                        <outletCollection property="translatableViews" destination="zSi-Lf-kGC" collectionClass="NSMutableArray" id="Cm6-gw-S9Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="186" y="123"/>
+        </scene>
+        <!--Constraint View Controller-->
+        <scene sceneID="YqT-eR-iw4">
+            <objects>
+                <viewController storyboardIdentifier="constraint" id="Coe-az-hHd" customClass="ConstraintViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ulS-90-0x7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWY-68-XAH">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.24313725489999999" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4w9-q0-7a7"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickWithSender:" destination="Coe-az-hHd" eventType="touchDown" id="cUn-uO-6px"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mzc-eD-AsT">
+                                <rect key="frame" x="0.0" y="555" width="375" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fKz-eu-MCv" firstAttribute="trailing" secondItem="mzc-eD-AsT" secondAttribute="trailing" id="73t-Wx-5kd"/>
+                            <constraint firstItem="mzc-eD-AsT" firstAttribute="leading" secondItem="fKz-eu-MCv" secondAttribute="leading" id="CY7-Ek-co3"/>
+                            <constraint firstItem="RWY-68-XAH" firstAttribute="leading" secondItem="fKz-eu-MCv" secondAttribute="leading" id="ShR-JO-LBk"/>
+                            <constraint firstItem="RWY-68-XAH" firstAttribute="top" secondItem="mzc-eD-AsT" secondAttribute="bottom" constant="42" id="SnU-hr-fnv"/>
+                            <constraint firstItem="fKz-eu-MCv" firstAttribute="trailing" secondItem="RWY-68-XAH" secondAttribute="trailing" id="fhK-2J-9KW"/>
+                            <constraint firstItem="fKz-eu-MCv" firstAttribute="bottom" secondItem="RWY-68-XAH" secondAttribute="bottom" id="w0Z-LJ-IEH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fKz-eu-MCv"/>
+                    </view>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="w0Z-LJ-IEH" id="jCd-hX-Mf7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G5k-VS-C7G" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="185" y="806"/>
         </scene>
     </scenes>
 </document>

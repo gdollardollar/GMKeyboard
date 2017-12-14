@@ -36,5 +36,8 @@ class ViewController: UIViewController, BottomViewKeyboardObserver {
         view.endEditing(true)
     }
 
+    @IBAction func click(sender: UIButton) {
+        self.view.endEditing(true)
+    }
 }
 
