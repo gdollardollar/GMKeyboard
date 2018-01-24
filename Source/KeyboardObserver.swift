@@ -97,6 +97,10 @@ extension KeyboardObserver where Self: UIViewController{
     ///
     /// - Parameter userInfo: the notification userInfo
     public func handleKeyboardNotificationUserInfo(_ userInfo: [AnyHashable: Any]) {
+        guard isViewLoaded else {
+            return
+        }
+        
         keyboardWillChange(frameInView: self.view.convert(userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect, from: nil),
                            animationDuration: userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval,
                            animationOptions: _gm_optionFromCurve(userInfo[UIKeyboardAnimationCurveUserInfoKey] as! Int),
