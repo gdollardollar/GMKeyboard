@@ -30,6 +30,22 @@ public protocol BottomConstraintKeyboardObserver: AnimatedKeyboardObserver {
     /// The default implementation simply returns 0
     var bottomOffset: CGFloat { get }
     
+    /// This method is called to calculate the bottom constraint constant for
+    /// a certain keyboard state.
+    /// The result is assigned to the bottomConstraint?.constant in the
+    /// `animateKeyboardChange(frameInView: userInfo:)` method before a
+    /// new layout is requested.
+    ///
+    /// The default implementation assumes that the view is at `bottomOffset`
+    /// and adds the keyboard height.
+    ///
+    ///
+    /// - Parameters:
+    ///   - frame: the frame of the keyboard in the view
+    ///   - userInfo: the user info
+    /// - Returns: the new `bottomConstraint` constant
+    func computeBottomConstraintConstant(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) -> CGFloat
+    
 }
 
 extension BottomConstraintKeyboardObserver where Self: UIViewController {
@@ -38,8 +54,7 @@ extension BottomConstraintKeyboardObserver where Self: UIViewController {
         return 0
     }
     
-    public func animateKeyboardChange(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) {
-        
+    public func computeBottomConstraintConstant(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) -> CGFloat {
         let kHeight = max(0, view.bounds.height - frame.minY)
         let guideOffset: CGFloat
         
@@ -51,7 +66,11 @@ extension BottomConstraintKeyboardObserver where Self: UIViewController {
             guideOffset = 0
         }
         
-        bottomConstraint?.constant = guideOffset + bottomOffset + kHeight
+        return max(0, guideOffset + bottomOffset + kHeight)
+    }
+    
+    public func animateKeyboardChange(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) {
+        bottomConstraint?.constant = computeBottomConstraintConstant(frameInView: frame, userInfo: userInfo)
         view.setNeedsLayout()
         view.layoutIfNeeded()
     }
