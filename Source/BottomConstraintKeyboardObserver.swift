@@ -24,10 +24,16 @@ public protocol BottomConstraintKeyboardObserver: AnimatedKeyboardObserver {
     
     
     /// An offset added to the calculated value of the constraint
-    /// You could very well provide a different value depending on if
-    /// the keyboard is displayed.
     ///
-    /// The default implementation simply returns 0
+    /// The default implementation returns the distance between the
+    /// bottom of the second item of the `bottomConstraint` when the
+    /// bottomConstraint.constant is equal to 0 and the bottom of the superview
+    /// (Only if the item is a view and has a superview):
+    ///
+    /// `-(superview.bounds.height - view.frame.maxY + bottomConstraint.constant)`
+    ///
+    /// This just means that the bottom of the secont item will be aligned with
+    /// the top of the keyboard when it is displayed.
     var bottomOffset: CGFloat { get }
     
     /// This method is called to calculate the bottom constraint constant for
@@ -51,7 +57,12 @@ public protocol BottomConstraintKeyboardObserver: AnimatedKeyboardObserver {
 extension BottomConstraintKeyboardObserver where Self: UIViewController {
     
     public var bottomOffset: CGFloat {
-        return 0
+        guard let view = bottomConstraint?.secondItem as? UIView,
+            let superview = view.superview else {
+            return 0
+        }
+        
+        return -(superview.bounds.height - view.frame.maxY + bottomConstraint.constant)
     }
     
     public func computeBottomConstraintConstant(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) -> CGFloat {
