@@ -30,7 +30,7 @@ public protocol BottomConstraintKeyboardObserver: AnimatedKeyboardObserver {
     /// bottomConstraint.constant is equal to 0 and the bottom of the superview
     /// (Only if the item is a view and has a superview):
     ///
-    /// `-(superview.bounds.height - view.frame.maxY + bottomConstraint.constant)`
+    /// `view.frame.maxY + bottomConstraint.constant - superview.bounds.height`
     ///
     /// This just means that the bottom of the secont item will be aligned with
     /// the top of the keyboard when it is displayed.
@@ -62,7 +62,7 @@ extension BottomConstraintKeyboardObserver where Self: UIViewController {
             return 0
         }
         
-        return -(superview.bounds.height - view.frame.maxY + bottomConstraint.constant)
+        return view.frame.maxY + bottomConstraint.constant - superview.bounds.height
     }
     
     public func computeBottomConstraintConstant(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) -> CGFloat {
