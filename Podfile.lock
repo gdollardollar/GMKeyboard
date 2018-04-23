@@ -6,11 +6,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   GMKeyboard:
-    :path: ./
+    :path: "./"
 
 SPEC CHECKSUMS:
   GMKeyboard: 278e7e0bedc55d53c7af0dcaaa953f3d63b00abe
 
 PODFILE CHECKSUM: 75b2f8975d2d802207a60cb9f3f6aa769805fba6
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

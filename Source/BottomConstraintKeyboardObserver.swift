@@ -20,7 +20,7 @@ public protocol BottomConstraintKeyboardObserver: AnimatedKeyboardObserver {
     
     /// A constraint at the bottom of the view that will be updated when the
     /// keyboard is displayed.
-    weak var bottomConstraint: NSLayoutConstraint! { get }
+    var bottomConstraint: NSLayoutConstraint! { get }
     
     
     /// An offset added to the calculated value of the constraint

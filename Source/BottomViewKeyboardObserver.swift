@@ -17,7 +17,7 @@ import Foundation
 public protocol BottomViewKeyboardObserver: AnimatedKeyboardObserver {
     
     /// The view that should remain above the keyboard.
-    weak var bottomView: UIView! { get }
+    var bottomView: UIView! { get }
     
     /// An array of views that will be translated of the
     /// same amount as the the `bottomView`.
