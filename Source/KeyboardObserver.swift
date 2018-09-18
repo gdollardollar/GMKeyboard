@@ -181,15 +181,17 @@ fileprivate var GM_ISKEYBOARDDISPLAYED_KEY = "GMKeyboard.isKeyboardDisplayed"
 fileprivate var GM_OBSERVERS_KEY = "GMKeyboard.observers"
 
 fileprivate func _gm_optionFromCurve(_ rawValue: Int) -> UIViewAnimationOptions {
-    let curve = UIViewAnimationCurve(rawValue: Int(rawValue))!
-    switch curve {
-    case .easeIn:
+    switch rawValue {
+    case 0:
         return .curveEaseIn
-    case .easeOut:
+    case 1:
+
         return .curveEaseOut
-    case .easeInOut:
-        return UIViewAnimationOptions()
-    case .linear:
+    case 2:
+        return .curveEaseInOut
+    case 3:
         return .curveLinear
+    default:
+        return .curveEaseInOut
     }
 }
