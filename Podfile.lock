@@ -1,5 +1,5 @@
 PODS:
-  - GMKeyboard (2.3.2)
+  - GMKeyboard (2.3.3)
 
 DEPENDENCIES:
   - GMKeyboard (from `./`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  GMKeyboard: 1a7b1336a854ca1c416a0673d1ce134ba04c4fe0
+  GMKeyboard: 612d974d84fd47923cfce8b6a34e046ced158e15
 
 PODFILE CHECKSUM: 75b2f8975d2d802207a60cb9f3f6aa769805fba6
 
