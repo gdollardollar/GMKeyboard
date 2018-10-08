@@ -47,7 +47,7 @@ extension AnimatedKeyboardObserver {
     
     public func keyboardWillChange(frameInView frame: CGRect,
                             animationDuration: TimeInterval,
-                            animationOptions: UIViewAnimationOptions,
+                            animationOptions: UIView.AnimationOptions,
                             userInfo: [AnyHashable : Any]) {
         
         guard shouldAnimateKeyboardChange(frameInView: frame, userInfo: userInfo) else {
