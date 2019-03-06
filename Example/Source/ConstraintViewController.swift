@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import GMKeyboard
+import protocol GMKeyboard.ConstraintKeyboardObserver
 
-class ConstraintViewController: UIViewController, BottomConstraintKeyboardObserver {
+class ConstraintViewController: UIViewController, ConstraintKeyboardObserver {
 
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var keyboardConstraint: NSLayoutConstraint?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
