@@ -8,7 +8,7 @@
 import UIKit
 import GMKeyboard
 
-class ViewViewController: UIViewController, BottomViewKeyboardObserver {
+class BottomViewViewController: UIViewController, BottomViewKeyboardObserver {
     
     @IBOutlet var translatableViews: [UIView]!
     

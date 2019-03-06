@@ -8,7 +8,7 @@
 import UIKit
 import GMKeyboard
 
-class ConstraintViewController: UIViewController, BottomConstraintKeyboardObserver {
+class BottomConstraintViewController: UIViewController, BottomConstraintKeyboardObserver {
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
