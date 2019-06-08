@@ -27,6 +27,11 @@ public protocol ConstraintKeyboardObserver: AnimatedKeyboardObserver {
     /// Defaults to `10`
     var keyboardMargin: CGFloat { get }
 
+    /// The minimum constraint constant
+    ///
+    /// Defaults to nil
+    var mininumConstraintConstant: CGFloat? { get }
+
     /// A constraint that will be updated when the keyboard is displayed. It is assume that increasing the constant
     /// will move the `bottomView` upwards.
     ///
@@ -55,6 +60,10 @@ public protocol ConstraintKeyboardObserver: AnimatedKeyboardObserver {
 
 extension ConstraintKeyboardObserver where Self: UIViewController {
 
+    public var mininumConstraintConstant: CGFloat? {
+        return nil
+    }
+
     public var bottomView: UIView? {
         return keyboardConstraint?.secondItem as? UIView
     }
@@ -74,7 +83,12 @@ extension ConstraintKeyboardObserver where Self: UIViewController {
         // Translation required to put the bottom of the `bottomView` at `keyboardMargin` from the keyboard
         let ty = frame.minY - (bottomFrameBottom + keyboardMargin)
 
-        return (keyboardConstraint?.constant ?? 0) - ty
+        let constant = (keyboardConstraint?.constant ?? 0) - ty
+        if let _min = mininumConstraintConstant {
+            return max(_min, constant)
+        } else {
+            return constant
+        }
     }
 
     public func animateKeyboardChange(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) {
