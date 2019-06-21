@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'GMKeyboard'
-  s.version          = '2.4.0'
+  s.version          = '2.4.1'
   s.summary          = 'Keyboard Handler'
   s.homepage         = 'https://github.com/gdollardollar/GMKeyboard'
   s.license          = { type: 'MIT', file: 'LICENSE' }
