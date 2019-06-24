@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 /// #Base protocol for Keyboard Observing
 ///
 /// It provides a simplified way to handle keyboard notifications.
@@ -17,14 +16,13 @@ import UIKit
 /// `removeKeyboardObservers()` in `viewWillDisappear(animated:)`
 /// - Override `keyboardWillChange(frameInView:animationDuration:animationOptions:userInfo:)`
 public protocol KeyboardObserver: class {
-    
-    
+
     /// Boolean value that is set when keyboard is displayed.
     ///
     /// The default implementation stores it as an associated object,
     /// Feel free to override it to provide your own implementation.
     var isKeyboardDisplayed: Bool { get set }
-    
+
     /// Array containing all the keyboard observers.
     /// Notifications had to be handled using a block method to allow calling
     /// protocol methods. Observers then had to be store manually to be
@@ -33,7 +31,7 @@ public protocol KeyboardObserver: class {
     /// The default implementation stores it as an associated object,
     /// Feel free to override it to provide your own implementation.
     var keyboardObservers: [Any]? { get set }
-    
+
     /// This method is called when the `UIKeyboardWillShow` notification
     /// is triggered, i-e everytime the keyboard frame
     /// changes.
@@ -54,7 +52,7 @@ public protocol KeyboardObserver: class {
     ///
     /// - Parameter notification: the keyboard notification
     func keyboardWillShow(notification: Notification)
-    
+
     /// This method is called when the `UIKeyboardWillHide` notification
     /// is triggered, i-e when the keyboard hides.
     ///
@@ -72,7 +70,7 @@ public protocol KeyboardObserver: class {
     ///
     /// - Parameter notification: the keyboard notification
     func keyboardWillHide(notification: Notification)
-    
+
     /// Base method to be overriden.
     /// It takes the appropriate parameters present in the Notification
     /// userInfo and presents them in a nicer way
@@ -88,9 +86,8 @@ public protocol KeyboardObserver: class {
                             userInfo: [AnyHashable: Any])
 }
 
-extension KeyboardObserver where Self: UIViewController{
-    
-    
+extension KeyboardObserver where Self: UIViewController {
+
     /// Handles the notification and calls
     /// `keyboardWillChange(frameInView:animationDuration:animationOptions:userInfo:)
     /// with the right parameters from the userInfo dictionary
@@ -100,14 +97,13 @@ extension KeyboardObserver where Self: UIViewController{
         guard isViewLoaded else {
             return
         }
-        
+
         keyboardWillChange(frameInView: self.view.convert(userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect, from: nil),
                            animationDuration: userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval,
                            animationOptions: _gm_optionFromCurve(userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as! Int),
                            userInfo: userInfo)
     }
-    
-    
+
     /// Handles `UIKeyboardWillShow` notification
     /// Sets `isKeyboardDisplayed` to `true` and calls
     /// handleKeyboardNotificationUserInfo(_:)
@@ -117,7 +113,7 @@ extension KeyboardObserver where Self: UIViewController{
         isKeyboardDisplayed = true
         handleKeyboardNotificationUserInfo(notification.userInfo!)
     }
-    
+
     /// Handles `UIKeyboardWillHide` notification
     /// Sets `isKeyboardDisplayed` to `false` and calls
     /// handleKeyboardNotificationUserInfo(_:)
@@ -127,7 +123,7 @@ extension KeyboardObserver where Self: UIViewController{
         isKeyboardDisplayed = false
         handleKeyboardNotificationUserInfo(notification.userInfo!)
     }
-    
+
     /// Adds the keyboard observers to the default notification center
     /// and stores them in the `keyboardObservers` variable
     public func addKeyboardObservers() {
@@ -142,7 +138,7 @@ extension KeyboardObserver where Self: UIViewController{
             }
         ]
     }
-    
+
     /// Stores keyboard observers
     /// Default implementation is an associated object
     public var keyboardObservers: [Any]? {
@@ -153,17 +149,17 @@ extension KeyboardObserver where Self: UIViewController{
             objc_setAssociatedObject(self, &GM_OBSERVERS_KEY, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
-    
+
     /// Removes keyboard observers from the default notification center
     /// and sets `keyboardObservers` to nil
     public func removeKeyboardObservers() {
         let center = NotificationCenter.default
         keyboardObservers?.forEach { center.removeObserver($0) }
         keyboardObservers = nil
-        
+
         center.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+
     /// `true` if keyboard is displayed
     /// Only set if observers were properly
     public var isKeyboardDisplayed: Bool {
@@ -174,13 +170,13 @@ extension KeyboardObserver where Self: UIViewController{
              objc_setAssociatedObject(self, &GM_ISKEYBOARDDISPLAYED_KEY, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
         }
     }
-    
+
 }
 
-fileprivate var GM_ISKEYBOARDDISPLAYED_KEY = "GMKeyboard.isKeyboardDisplayed"
-fileprivate var GM_OBSERVERS_KEY = "GMKeyboard.observers"
+private var GM_ISKEYBOARDDISPLAYED_KEY = "GMKeyboard.isKeyboardDisplayed"
+private var GM_OBSERVERS_KEY = "GMKeyboard.observers"
 
-fileprivate func _gm_optionFromCurve(_ rawValue: Int) -> UIView.AnimationOptions {
+private func _gm_optionFromCurve(_ rawValue: Int) -> UIView.AnimationOptions {
     switch rawValue {
     case 0:
         return .curveEaseIn

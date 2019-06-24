@@ -53,10 +53,9 @@ public protocol ConstraintKeyboardObserver: AnimatedKeyboardObserver {
     ///   - frame: the frame of the keyboard in the view
     ///   - userInfo: the user info
     /// - Returns: the new `bottomConstraint` constant
-    func computeConstraintConstant(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) -> CGFloat
-    
-}
+    func computeConstraintConstant(frameInView frame: CGRect, userInfo: [AnyHashable: Any]) -> CGFloat
 
+}
 
 extension ConstraintKeyboardObserver where Self: UIViewController {
 
@@ -72,7 +71,7 @@ extension ConstraintKeyboardObserver where Self: UIViewController {
         return 10
     }
 
-    public func computeConstraintConstant(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) -> CGFloat {
+    public func computeConstraintConstant(frameInView frame: CGRect, userInfo: [AnyHashable: Any]) -> CGFloat {
         guard let bottomView = self.bottomView else {
             return 0
         }
@@ -91,7 +90,7 @@ extension ConstraintKeyboardObserver where Self: UIViewController {
         }
     }
 
-    public func animateKeyboardChange(frameInView frame: CGRect, userInfo: [AnyHashable : Any]) {
+    public func animateKeyboardChange(frameInView frame: CGRect, userInfo: [AnyHashable: Any]) {
         keyboardConstraint?.constant = computeConstraintConstant(frameInView: frame, userInfo: userInfo)
         view.setNeedsLayout()
         view.layoutIfNeeded()
