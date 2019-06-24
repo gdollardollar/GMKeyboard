@@ -9,20 +9,20 @@ import UIKit
 import GMKeyboard
 
 class BottomViewViewController: UIViewController, BottomViewKeyboardObserver {
-    
+
     @IBOutlet var translatableViews: [UIView]!
-    
+
     @IBOutlet weak var bottomView: UIView!
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         addKeyboardObservers()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
+
         removeKeyboardObservers()
     }
 
@@ -30,4 +30,3 @@ class BottomViewViewController: UIViewController, BottomViewKeyboardObserver {
         self.view.endEditing(true)
     }
 }
-
